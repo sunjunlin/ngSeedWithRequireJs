@@ -1,0 +1,27 @@
+
+
+.section {
+    margin-bottom: 100px;
+   
+}
+
+ 
+.list-group {
+    margin-bottom: 0px;
+}
+
+.page-header {
+    margin-bottom: 10px;
+}
+.list-group-item{
+
+    padding:10px 0px;
+}
+.btn-tab-detail{
+
+    height:50px;
+}
+.btn-tab-detail-item{
+border-radius:0px;
+}
+ 

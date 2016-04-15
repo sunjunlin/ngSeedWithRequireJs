@@ -1,0 +1,51 @@
+﻿<span us-spinner  spinner-key="spinner-1"></span>
+ 
+<!--<div class="search"><div class="search_l"><input name=""  type="text" class="input_search"  placeholder="输入申请人关键字模糊搜索..." ng-model="keyWord" ></div><div class="btn_search"  ng-click="search();">搜索</div></div>-->
+
+<div class="search">
+    <div class="btn-group" style="width:80%">
+        <input id="input_search" type="text" class="form-control" style="width:100%" placeholder="输入申请人关键字..." ng-model="keyWord">
+        <span id="searchclear" class="glyphicon glyphicon-remove-circle" ng-click="clear();"></span>
+    </div>
+    <div class="btn_search" ng-click="search();">搜索</div>
+</div>
+
+<div infinite-scroll="myPagingFunction()" infinite-scroll-distance="0" infinite-scroll-immediate-check="false" infinite-scroll-listen-for-event="list:filtered">
+    <div class="process_w" ng-repeat="process in ReviewedListData" ng-click="showDetail($index,process.DefName)">
+        <div class="process_title">{{process.WorkflowName}}</div>
+        <div class="process_info">
+            <p>流程类别：{{process.ProcName}}</p>
+            <p>申请人：{{process.AD}}</p>
+            <p>时间：{{process.AssinedDateString}}</p>
+            <p>流程编号：{{process.WorkFlowNumber}}</p>
+        </div>
+
+    </div>
+
+
+    <div class="more" ng-click="loadMore();">
+        <div class="more_bi">查看更多</div>
+        <div class="more_go"><img src="images/go.png"></div>
+    </div>
+</div>
+       <!-- loading toast -->
+<div id="loadingToast" class="weui_loading_toast" ng-show="isLoadingToast">
+    <div class="weui_mask_transparent"></div>
+    <div class="weui_toast">
+        <div class="weui_loading">
+            <div class="weui_loading_leaf weui_loading_leaf_0"></div>
+            <div class="weui_loading_leaf weui_loading_leaf_1"></div>
+            <div class="weui_loading_leaf weui_loading_leaf_2"></div>
+            <div class="weui_loading_leaf weui_loading_leaf_3"></div>
+            <div class="weui_loading_leaf weui_loading_leaf_4"></div>
+            <div class="weui_loading_leaf weui_loading_leaf_5"></div>
+            <div class="weui_loading_leaf weui_loading_leaf_6"></div>
+            <div class="weui_loading_leaf weui_loading_leaf_7"></div>
+            <div class="weui_loading_leaf weui_loading_leaf_8"></div>
+            <div class="weui_loading_leaf weui_loading_leaf_9"></div>
+            <div class="weui_loading_leaf weui_loading_leaf_10"></div>
+            <div class="weui_loading_leaf weui_loading_leaf_11"></div>
+        </div>
+        <p class="weui_toast_content">数据加载中</p>
+    </div>
+</div>

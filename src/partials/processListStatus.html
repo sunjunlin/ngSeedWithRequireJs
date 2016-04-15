@@ -1,0 +1,34 @@
+﻿ 
+<span us-spinner  spinner-key="spinner-1"></span>
+<div>
+    <div class="status" >
+        <div class="process_title">信息传递表</div>
+        <div class="process_info">
+            <p>申请人：{{processListDetail.CreatorName}}</p>
+            <p>时间：{{processListDetail.DisplayTime}}</p>
+            <p>流程单号：{{processListDetail.ITNO}}</p>
+        </div>
+    </div>
+    <div class="status" >
+   
+        <div ng-repeat="process in processStatusDetail">
+            <div class="status_list center-1">
+                <ul>
+                    <li>
+                        <div class="status_list_title">{{process.ActivityName}}：{{process.ApproverName}}  {{process.Result}} </div>
+                        <div align="status_list_time">时间：{{process.ApproveTimeStr}} </div>
+                        <div align="status_list_time" ng-show="process.Comment!=''">审批意见：{{process.Comment}} </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="flowdown" ng-show="!$last">
+                <div class="status_line"></div>
+                <div class="status_triangle_fram">
+                    <div class="status_triangle"></div>
+                </div>
+            </div>
+        </div>
+     
+    </div>
+
+</div>

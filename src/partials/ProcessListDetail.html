@@ -1,0 +1,93 @@
+ 
+    <div>
+        <span us-spinner spinner-key="spinner-1"></span>
+        <div class="detailed">
+            <div class="detailed_title">信息传递表</div>
+            <div class="detailed_infor">
+                <div class="detailed_infor_l">
+                    <div class="detailed_infor_left">编号:</div>
+                    <div class="detailed_infor_lright">{{processListDetail.ITNO}} </div>
+                </div>
+                <div class="detailed_infor_l">
+                    <div class="detailed_infor_left">日期:</div>
+                    <div class="detailed_infor_lright">{{processListDetail.DisplayTime}}</div>
+                </div>
+                <div class="detailed_infor_l">
+                    <div class="detailed_infor_left">部门:</div>
+                    <div class="detailed_infor_lright">{{processListDetail.CreatorDept}}</div>
+                </div>
+                <div class="detailed_infor_l">
+                    <div class="detailed_infor_left">申请人:</div>
+                    <div class="detailed_infor_lright">{{processListDetail.CreatorName}}</div>
+                </div>
+                <div class="detailed_infor_l">
+                    <div class="detailed_infor_left">事由:</div>
+                    <div class="detailed_infor_lright">{{processListDetail.Reason}}</div>
+                </div>
+                <div class="detailed_infor_l">
+                    <div class="detailed_infor_left">收件人:</div>
+                    <div class="detailed_infor_lright">{{processListDetail.Consignee}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="detailed_h">
+            <div class="detailed_title">内容</div>
+            <div class="detailed_infor">
+                <div class="detailed_infor_n" style=" overflow-x: auto;">
+
+                    <div class="detailed_infor_con" ng-bind-html="deliberatelyTrustDangerousSnippet()"></div>
+                </div>
+            </div>
+        </div>
+        <div class="detailed_h">
+            <div class="detailed_infor">
+                <div class="detailed_infor_n">
+                    <div class="detailed_infor_left">附件:</div>
+                    <div class="detailed_infor_lright">
+
+
+                        <div ng-repeat="attach in processListDetailAttachment">
+
+
+                            <a href="" ng-click="OpenAttach(attach.AttachmentID);" ng-show="isWeiXinClient==true">{{attach.AttachmentTitle}}</a>
+                            <a href="{{attach.AttachmentPath}}" ng-show="isWeiXinClient==false">{{attach.AttachmentTitle}}</a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="detailed_h" ng-show="IsShowControl">
+
+            <div class="detailed_infor">
+                <div class="detailed_infor_n">
+                    <div class="detailed_infor_left">审批意见:</div>
+                    <div class="detailed_infor_lright bleutext">
+                        <textarea name="" class="input_detailed" ng-model="Comments" required></textarea>
+                        <br />
+                        <span style="color:red" ng-show="CommentsRequird">驳回时审批意见必填.</span>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="detailed_h">
+            <div class="center-1 btnall">
+                <ul>
+                    <li>
+                        <div class="btn_blue" ng-class="{true:'btn_blue',false:'btn_gray'}[buttonCssClass]" ng-click="showProcessStatus(processListDetail.ProcInsID)" ng-disable="buttonDisable">审批记录</div>
+                    </li>
+                    <li ng-show="IsShowControl">
+ 
+                        <div ng-class="{true:'btn_green',false:'btn_gray'}[buttonCssClass]" ng-click="Approve()" ng-disable="buttonDisable" >批 准</div>
+
+                    </li>
+                    <li ng-show="IsShowControl">
+                        <div ng-class="{true:'btn_red',false:'btn_gray'}[buttonCssClass]" ng-click="RollBack()" ng-disable="buttonDisable" >驳 回</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+ 

@@ -1,0 +1,118 @@
+﻿@charset "utf-8";
+* {
+	margin:0px;
+	padding:0px;
+}
+body {
+	font-family:微软雅黑;
+	background:#fff;
+}
+a {
+	text-decoration:none;
+}
+img {
+	border:0px;
+	width:100%;
+	height:auto;
+}
+ul {
+	list-style:none;
+}
+.ui-body-c, .ui-dialog.ui-overlay-c {
+	background:none;
+	text-shadow:none;
+}
+.ui-body-c, .ui-body-c input, .ui-body-c select, .ui-body-c textarea, .ui-body-c button {
+	font-family:微软雅黑;
+}
+/*banner*/
+header {
+	text-align:center;
+	position:relative;
+	overflow:hidden;
+	margin-bottom:8px;
+	margin:0 8px;
+}
+.banner {
+	/*height:480px;*/
+}
+.banner img {
+	width:100%;
+}
+/*banner*/
+.main {
+	margin:0 8px;
+}
+.frist_leftbox {
+	float:left;
+	width:34%;
+	height:170px;
+	background:#D75553;
+}
+.frist_rightbox {
+	float:right;
+	width:64%;
+	height:170px;
+	background:#4F80DD	
+}
+.frist, .sc {
+	clear:both;
+	margin-bottom:8px;
+	width:100%;
+	overflow:hidden;
+}
+.sc_leftbox {
+	float:left;
+	width:64%;
+	height:170px;
+	background:#1FA66E
+}
+.sc_rightbox {
+	float:right;
+	width:34%;
+	height:170px;
+	background:#91C032	
+}
+.menutext {
+	line-height:68px;
+	padding:0 8px;
+	text-align:left;
+	font-size:20px;
+	color:#FFF;
+	height:68px;
+}
+.menutext a {
+	color:#FFF;
+	text-decoration:none;
+}
+.menulogo {
+	padding:0 8px;
+	text-align:right;
+	height:96px;
+}
+.menulogo img {
+	width:96px;
+	height:96px;
+}
+.eip_leftbox {
+	float:left;
+	width:34%;
+	height:170px;
+	background:#D65FC7;
+}
+.eip_rightbox  {
+	float:right;
+	width:64%;
+	height:170px;
+	background:#D4AC64;
+}
+
+.bottombar {
+	height:30px;
+	line-height:30px;
+	font-size:14px;
+	color:#FFF;
+	text-align:center;
+	background:#666;
+	margin:8px 0;
+}

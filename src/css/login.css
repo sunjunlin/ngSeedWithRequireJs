@@ -1,0 +1,92 @@
+@charset "utf-8";
+* {
+    margin:0px;
+    padding:0px;
+}
+body {
+    font-family:微软雅黑;
+    background:#fff;
+}
+a {
+    text-decoration:none;
+}
+img {
+    border:0px;
+    width:100%;
+    height:auto;
+}
+ul {
+    list-style:none;
+}
+.ui-body-c, .ui-dialog.ui-overlay-c {
+    background:none;
+    text-shadow:none;
+}
+.ui-body-c, .ui-body-c input, .ui-body-c select, .ui-body-c textarea, .ui-body-c button {
+    font-family:微软雅黑;
+}
+/*banner*/
+header {
+    text-align:center;
+}
+.result_r, .all {
+    text-align:center;
+    width:70%;
+    margin:50px auto 50px auto;
+}
+.result_m {
+    text-align:center;
+    width:70%;
+    margin:50px auto 20px auto;
+}
+.result_mt {
+    width:70%;
+    text-align:center;
+    line-height:30px;
+    font-size:18px;
+    color:#DD4848;
+    text-align:center;
+    margin:0 auto 100px auto;
+}
+.result_r img, .all img, .result_m img {
+    width:70%;
+}
+.logint {
+    text-align:center;
+    font-size:18px;
+    color:#888;
+    margin:10px auto;
+    width:80%;
+}
+.log_input {
+    text-align:center;
+    height:60px;
+    width:100%;
+}
+.input_l {
+    height:40px;
+    line-height:40px;
+    width:80%;
+    color:#333;
+    font-size:18px;
+    border:0;
+    border-bottom:1px solid #E7E7E7;
+    text-align:center;
+    margin:0px atuo;
+}
+.input_l:hover {
+    cursor:pointer;
+    background:#E7E7E7;
+    border-bottom:1px solid #D7D7D7;
+}
+.btn {
+    width:80%;
+    height:60px;
+    text-align:center;
+    background:#DD4848;
+    text-align:center;
+    color:#FFF;
+    line-height:60px;
+    margin:10px auto;
+    font-size:24px;
+}

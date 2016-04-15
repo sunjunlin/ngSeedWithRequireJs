@@ -1,0 +1,120 @@
+﻿body {
+    font-family: 微软雅黑, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    color: #333333;
+    background-color: #FFFFFF;
+    margin-left: 0px;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+}
+
+.webframe {
+    overflow: hidden;
+}
+
+.topbar {
+    height: 30px;
+    background: #000000;
+    color: #FFF;
+    line-height: 30px;
+}
+
+    .topbar a {
+        color: #FFF;
+        text-decoration: none;
+    }
+
+    .topbar td {
+        padding: 0 10px;
+    }
+
+.topbar_left {
+    width: 40px;
+}
+
+.topbar_right {
+    width: 40px;
+}
+
+.topbar_title {
+    text-align: center;
+}
+
+.list {
+    padding: 4px 10px;
+    border-bottom: 1PX solid #CCCCCC;
+    overflow: hidden;
+}
+
+.list_detal {
+    padding: 4px 10px;
+    overflow: hidden;
+}
+
+.list:hover {
+    background: #F1F1F1;
+    cursor: pointer;
+}
+
+.list_title {
+    font-size: 18px;
+    line-height: 24px;
+    padding: 4px 0;
+}
+
+.list_l {
+    float: left;
+    color: #666666;
+    line-height: 24px;
+}
+
+.list_title a {
+    color: #333;
+    text-decoration: none;
+}
+
+    .list_title a:hover {
+        color: #990000;
+    }
+
+.list_r {
+    float: right;
+    border: 1px solid #999;
+    height: 24px;
+    width: 24px;
+    margin: 6px;
+    line-height: 24px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+    .list_r a {
+        text-decoration: none;
+        color: #999;
+    }
+
+.list_d {
+    line-height: 32px;
+    border-bottom: 1PX solid #CCCCCC;
+    height: 32px;
+    overflow: hidden;
+}
+
+    .list_d div {
+        float: left;
+        margin-right: 20px;
+    }
+
+.text_detail {
+    line-height: 24px;
+}
+
+.indent {
+    text-indent: 20px;
+}
+
+.text_r {
+    text-align: right;
+}

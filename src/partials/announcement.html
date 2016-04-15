@@ -1,0 +1,15 @@
+﻿
+<div class="webframe">
+ 
+    <div ng-repeat="annoucement in annoucements" class="list" ng-click="showDetail($index)">
+        <div class="list_title"> <a href="#/Announcement/{{annoucement.id}}">{{annoucement.title}}</a></div>
+        <div>
+            <div class="list_l">
+                <div>{{annoucement.date}}</div>
+                <div>{{annoucement.number}}</div>
+            </div>
+            <div class="list_r">&gt;</div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,174 @@
+
+
+<span us-spinner spinner-key="spinner-1"></span>
+
+
+
+<div class='section'>
+    
+    <ui-state id='activeTab' default='1'></ui-state>
+    <ul class="nav nav-tabs">
+        <li ui-class="{'active': activeTab == 1}">
+            <a ui-set="{'activeTab': 1}">申请信息</a>
+        </li>
+        <li ui-class="{'active': activeTab == 2}">
+            <a ui-set="{'activeTab': 2}">加班信息</a>
+        </li>
+        <li ui-class="{'active': activeTab == 3}">
+            <a ui-set="{'activeTab': 3}">流程状态</a>
+        </li>
+    </ul>
+    <div ui-if="activeTab == 1">
+
+        <div class="list-group">
+            <a class="list-group-item">
+                <h5 class="list-group-item-heading">编号</h5>
+                <p class="list-group-item-text">CM001201508090002</p>
+            </a>
+            <a class="list-group-item">
+
+                <h5 class="list-group-item-heading">日期</h5>
+                <p class="list-group-item-text">2015-08-09 11:55:08</p>
+            </a>
+            <a class="list-group-item">
+                <h5 class="list-group-item-heading">申请人</h5>
+                <p class="list-group-item-text">孙俊林(Junlin Sun)</p>
+            </a>
+
+            <a class="list-group-item">
+                <h5 class="list-group-item-heading">部门</h5>
+                <p class="list-group-item-text">OP/Global ISIT/ADO/DEV</p>
+            </a>
+            <a class="list-group-item">
+                <h5 class="list-group-item-heading">事由</h5>
+                <p class="list-group-item-text">公司合作关系</p>
+            </a>
+            <a class="list-group-item">
+                <h5 class="list-group-item-heading">收件人</h5>
+                <p class="list-group-item-text">孙俊林(Junlin Sun)</p>
+            </a>
+            <a class="list-group-item">
+                <h5 class="list-group-item-heading">内容</h5>
+                <p class="list-group-item-text" ng-bind-html="deliberatelyTrustDangerousSnippet()"> </p>
+            </a>
+
+
+
+        </div>
+
+        <div class="panel panel-default">
+            <!-- Default panel contents -->
+            <div class="panel-heading">附件</div>
+            <!-- Table -->
+            <table class="table">
+
+                <tbody>
+                    <tr ng-repeat="attach in processListDetailAttachment">
+
+                        <td>
+                            <a href="" ng-click="OpenAttach(attach.AttachmentID);" ng-show="isWeiXinClient==true">{{attach.AttachmentTitle}}</a>
+                            <a href="{{attach.AttachmentPath}}" ng-show="isWeiXinClient==false">{{attach.AttachmentTitle}}</a>
+                        </td>
+
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <div ui-if="activeTab == 2">
+        <br />
+
+
+        <div class="panel-group"
+             ui-state='myAccordion'>
+            <div class="panel panel-default">
+                <div class="panel-heading" ui-set="{'myAccordion': 1}">
+
+                    <h4 class="panel-title">
+                        2015-10-28节日加班5小时
+                    </h4>
+                </div>
+                <div ui-if="myAccordion == 1">
+                    <div class="panel-body">
+                        <dl class="dl-horizontal">
+                            <dt>工号</dt>
+                            <dd>JZ4743</dd>
+                            <dt>姓名</dt>
+                            <dd>孙俊林</dd>
+                            <dt>加班类型</dt>
+                            <dd>节日加班</dd>
+                            <dt>开始日期</dt>
+                            <dd>2015-10-28 11:17</dd>
+                            <dt>结束日期</dt>
+                            <dd>2015-10-28 11:17</dd>
+                            <dt>加班原因</dt>
+                            <dd>服务器故障</dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="panel panel-default">
+                <div class="panel-heading" ui-set="{'myAccordion': 2}">
+
+                    <h4 class="panel-title">
+                        2015-10-30周末加班8小时
+                    </h4>
+                </div>
+                <div ui-if="myAccordion ==2">
+                    <div class="panel-body">
+                        <dl class="dl-horizontal">
+                            <dt>工号</dt>
+                            <dd>JZ4743</dd>
+                            <dt>姓名</dt>
+                            <dd>孙俊林</dd>
+                            <dt>加班类型</dt>
+                            <dd>周末加班</dd>
+                            <dt>开始日期</dt>
+                            <dd>2015-11-04 11:17</dd>
+                            <dt>结束日期</dt>
+                            <dd>2015-11-05 11:17</dd>
+                            <dt>加班原因</dt>
+                            <dd>服务器故障</dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+
+
+
+
+
+
+    </div>
+    <div ui-if="activeTab == 3">
+
+
+        <form>
+            <div class="form-group">
+
+                <textarea class="form-control" ng-model="Comments" rows="3" placeholder="请输入审批意见" required></textarea>
+                <span style="color:red" ng-show="CommentsRequird">驳回时审批意见必填.</span>
+            </div>
+
+            <div style="float:left">
+
+                <button type="submit" ng-show="IsShowControl" class="btn btn-primary" ng-click="Approve()" ng-disable="buttonDisable" style="margin-right:10px;">批准</button>
+                <button type="submit" ng-show="IsShowControl" class="btn btn-warning" ng-click="RollBack()" ng-disable="buttonDisable" style="margin-right:10px;">驳回</button>
+                <button type="button" class="btn btn-success" ng-click="showProcessStatus(processListDetail.ProcInsID)" ng-disable="buttonDisable" style="margin-right:10px;">审批记录</button>
+
+            </div>
+      </form>
+
+
+    </div>
+
+

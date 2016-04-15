@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="wxApp">
+<head>
+   <script src="bower_components/jquery/dist/jquery.min.js"></script>
+   <script src="bower_components/jquery/dist/jquery.cookie.js"></script>
+   <!--<script src="js/config.js"></script>-->
+    <script src="js/config.test.js"></script>
+   <script src="js/unity.js"></script>
+</head>
+<body>
+    <script>
+      $(document).ready(function (){
+          var getParameterByName = function (name) {
+            if (name != undefined) {
+                name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+            }
+            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+    			results = regex.exec(location.search);
+            return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+          };
+                
+          var _redirect;
+          var generateUrl = function () {
+            var code = getParameterByName('code');
+            var state = getParameterByName('state');
+            
+            var url = config.application.getUserApiUrl;
+            url += '?code=' + code;
+            var stateArr = state.split('@@');
+            url += '&agentid=' + stateArr[0];
+            _redirect = stateArr[1].replace('@','#');
+            
+            return url;
+          };
+
+          var generateRedirect = function(userId){
+              var url = config.application.adAuthUrl;//TODO
+              url += '?userId=' + userId;
+              url += '&redirectUrl=' + _redirect;
+              return url;
+          };// go to ADAuth.html
+
+          var setToken = function () {
+              var token = $.cookie('wxToken');
+              
+              if(token != undefined || token != null){
+                  var url = generateRedirect(token.UserId); //go to ADAuth.html.
+                  window.location.href = url;
+              }
+              $.ajax({
+                  method:"GET",
+                  url:generateUrl(),
+                  dataType: 'JSON'
+              }).done(function (data) {
+                  //window.alert('login successful,your UserId is ' + data);
+                  $.cookie("wxToken", data); //when close the browser,the cookie will lose efficacy
+                  // $.cookie("wxToken", data,{expires:10});
+                  var userInfo = JSON.parse(data);
+                  var url = generateRedirect(userInfo.UserId);
+                  window.location.href = url;
+                  
+              }).error(function(error) {
+                  console.log(error);
+              });
+          };
+          setToken();
+      });
+    </script>
+</body>
+</html>

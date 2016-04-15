@@ -1,0 +1,30 @@
+﻿
+<div class="webframe scrollable" ui-state="searchBar" >
+
+    <input type="search"
+           class="form-control scrollable-header" ng-model="keyWord" ng-keyup="txtKeyUp()"
+           placeholder="Search.." />
+
+
+    <div class="scrollable-content" ui-scroll-bottom='bottomReached()'>
+
+        <div ng-repeat="people in peopleData" class="list" ng-click="showDetail($index)">
+
+            <div class="list_title">{{people.ZNAME}}</div>
+            <div>
+                <div class="list_l">
+                    <div>申请人：{{people.ZNAME}}</div>
+                    <div>
+                        <span>AD：{{people.ZAD}}</span>
+                        <span class="list_no">SapID:{{people.Id}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="text-align:center;font-size:20px;padding-bottom:40px;" ng-click="loadMore()">更多...</div>
+
+    </div>
+
+
+</div>
+

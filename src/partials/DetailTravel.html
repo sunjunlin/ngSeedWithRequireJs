@@ -1,0 +1,326 @@
+
+
+<span us-spinner spinner-key="spinner-1"></span>
+
+<div class='section'>
+
+
+    <ui-state id='activeTab' default='1'></ui-state>
+  
+    <div ui-if="activeTab == 1">
+
+        <div class="page-header">
+            <h4>审批 <small>动作</small></h4>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                申请人
+            </div>
+
+            <div class="panel-body">
+                <div class="list-group">
+                    <a class="list-group-item">
+                        <h5 class="list-group-item-heading">编号</h5>
+                        <p class="list-group-item-text">{{processListDetail.ITNO}}</p>
+                    </a>
+                    <a class="list-group-item">
+
+                        <h5 class="list-group-item-heading">日期</h5>
+                        <p class="list-group-item-text">{{processListDetail.CreateDateString}}</p>
+                    </a>
+                    <a class="list-group-item">
+                        <h5 class="list-group-item-heading">填表人</h5>
+                        <p class="list-group-item-text">{{processListDetail.CreatorName}}</p>
+                    </a>
+
+                    <a class="list-group-item">
+                        <h5 class="list-group-item-heading">部门</h5>
+                        <p class="list-group-item-text">{{processListDetail.CreatorDept}}</p>
+                    </a>
+
+
+                </div>
+            </div>
+        </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        打卡
+                    </div>
+
+                    <div class="panel-body">
+                        <form role="form">
+
+                            <div class="row">
+                                <div class="col-xs-6">
+
+                                    <label>是否打卡</label>
+                                    <ui-switch ng-model='IsCard' ng-disabled="{{IsCard_disabled}}"></ui-switch>
+                                </div>
+                                <div class="col-xs-6">
+                                    <label>是否门禁授权</label>
+                                    <ui-switch ng-model='IsDoor' ng-disabled="IsDoor_disabled"></ui-switch>
+                                </div>
+                            </div>
+                            <hr /><p>打卡/门禁授权地点</p>
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <label>深圳</label>
+                                    <ui-switch ng-model='IsSZ' ng-disabled="IsSZ_disabled"></ui-switch>
+                                </div>
+                                <div class="col-xs-6">
+                                    <label>上海</label>
+                                    <ui-switch ng-model='IsSH' ng-disabled="IsSH_disabled"></ui-switch>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <label>成都</label>
+                                    <ui-switch ng-model='IsCD' ng-disabled="IsCD_disabled"></ui-switch>
+                                </div>
+                                <div class="col-xs-6">
+                                    <label>宁波</label>
+                                    <ui-switch ng-model='IsNB' ng-disabled="IsNB_disabled"></ui-switch>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <label>惠州PIC</label>
+                                    <ui-switch ng-model='IsHZPIC' ng-disabled="IsHZPIC_disabled"></ui-switch>
+                                </div>
+                                <div class="col-xs-6">
+                                    <label>北京MIE</label>
+                                    <ui-switch ng-model='IsBJMIE' ng-disabled="IsBJMIE_disabled"></ui-switch>
+                                </div>
+                            </div>
+
+
+
+                        </form>
+                    </div>
+
+                </div>
+                <div class="panel panel-default" ng-show="IsShowControl">
+                    <div class="panel-heading">
+                        审批
+                    </div>
+
+                    <div class="panel-body">
+                        <form role="form">
+
+
+
+                            <div class="form-group">
+                                <textarea class="form-control" ng-model="Comments" rows="3" placeholder="请输入审批意见" required></textarea>
+
+                            </div>
+                            <div style="float:left">
+                                <button type="submit" class="btn btn-primary" ng-click="ApproveTravel(Comments,IsDoor,IsCard,IsSZ,IsSH,IsCD,IsNB,IsHZPIC,IsBJMIE);" style="margin-right:10px;">批准</button>
+                                <button type="submit" class="btn btn-warning" ng-click="RollBackTravel(Comments,IsDoor,IsCard,IsSZ,IsSH,IsCD,IsNB,IsHZPIC,IsBJMIE);" style="margin-right:10px;">驳回</button>
+
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+
+                <div class="panel panel-default" ng-show="HasAttachment">
+                    <!-- Default panel contents -->
+                    <div class="panel-heading">附件</div>
+                    <!-- Table -->
+                    <table class="table">
+
+                        <tbody>
+                            <tr ng-repeat="attach in processListDetailAttachment">
+
+                                <td>
+                                    <a href="" ng-click="OpenAttach(attach.AttachmentID);" ng-show="isWeiXinClient==true">{{attach.AttachmentTitle}}</a>
+                                    <a href="{{attach.AttachmentPath}}" ng-show="isWeiXinClient==false">{{attach.AttachmentTitle}}</a>
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+            <div ui-if="activeTab == 2">
+                <div class="page-header">
+                    <h4>详情 <small>行程与费用</small></h4>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">行程</div>
+                    <div class="panel-body" >
+                        <div class="list-group">
+
+                            <a class="list-group-item">
+                                <h5 class="list-group-item-heading">开始时间</h5>
+                                <p class="list-group-item-text">{{processListDetail.BeginDateString}}</p>
+                            </a>
+                            <a class="list-group-item">
+                                <h5 class="list-group-item-heading">结束时间</h5>
+                                <p class="list-group-item-text">{{processListDetail.EndDateString}}</p>
+                            </a>
+                            <a class="list-group-item">
+                                <h5 class="list-group-item-heading">天数</h5>
+                                <p class="list-group-item-text">{{processListDetail.TotalDays}}</p>
+                            </a>
+
+                            <a class="list-group-item">
+                                <h5 class="list-group-item-heading">出发地</h5>
+                                <p class="list-group-item-text">{{processListDetail.Departure}}</p>
+                            </a>
+                            <a class="list-group-item">
+                                <h5 class="list-group-item-heading">目的地</h5>
+                                <p class="list-group-item-text">{{processListDetail.Destination}}</p>
+                            </a>
+                            <a class="list-group-item">
+                                <h5 class="list-group-item-heading">是否需要预定机票</h5>
+                                <p class="list-group-item-text" ng-show="processListDetail.Transportation==true">是</p>
+                                <p class="list-group-item-text" ng-show="processListDetail.Transportation==false">否</p>
+                            </a>
+                            <a class="list-group-item">
+                                <h5 class="list-group-item-heading">出差目的</h5>
+                                <p class="list-group-item-text">{{processListDetail.Purpose}}</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">费用</div>
+                    <div class="panel-body" >
+                        <div class="list-group">
+
+                            <a class="list-group-item">
+                                <h5 class="list-group-item-heading">住宿费</h5>
+                                <p class="list-group-item-text">{{processListDetail.Hotel}}</p>
+                            </a>
+                            <a class="list-group-item">
+                                <h5 class="list-group-item-heading">出差补贴</h5>
+                                <p class="list-group-item-text">{{processListDetail.TripSubSidy}}</p>
+                            </a>
+                            <a class="list-group-item">
+                                <h5 class="list-group-item-heading">业务招待费</h5>
+                                <p class="list-group-item-text">{{processListDetail.Entertainment}}</p>
+                            </a>
+
+                            <a class="list-group-item">
+                                <h5 class="list-group-item-heading">区间路费</h5>
+                                <p class="list-group-item-text">{{processListDetail.AirRail}}</p>
+                            </a>
+                            <a class="list-group-item">
+                                <h5 class="list-group-item-heading">其他</h5>
+                                <p class="list-group-item-text">{{processListDetail.Other}}</p>
+                            </a>
+                            <a class="list-group-item">
+                                <h5 class="list-group-item-heading">合计</h5>
+                                <p class="list-group-item-text">{{processListDetail.TotalAmount}}</p>
+                            </a>
+                            <a class="list-group-item">
+                                <h5 class="list-group-item-heading">特殊要求/意见</h5>
+                                <p class="list-group-item-text">{{processListDetail.SpecialRequirement}}</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div ui-if="activeTab == 3">
+                <div class="page-header">
+                    <h4>流程 <small>状态</small></h4>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        流程图
+                    </div>
+                    <div>
+                        <div class="panel-body">
+                            <div class="status">
+
+                                <div ng-repeat="process in processStatusDetail">
+                                    <div class="status_list center-1">
+                                        <ul>
+                                            <li>
+                                                <div class="status_list_title">{{process.ActivityName}}：{{process.ApproverName}}  {{process.Result}} </div>
+                                                <div align="status_list_time">时间：{{process.ApproveTimeStr}} </div>
+                                                <div align="status_list_time" ng-show="process.Comment!=''">审批意见：{{process.Comment}} </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="flowdown" ng-show="!$last">
+                                        <div class="status_line"></div>
+                                        <div class="status_triangle_fram">
+                                            <div class="status_triangle"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+            </div>
+
+
+        </div>
+
+        <div style="height:60px;"></div>
+        <div class="btn-group justified nav-tabs btn-tab-detail" style="position:fixed;bottom:0px;">
+            <a ui-set="{'activeTab': 1}"
+               ui-class="{'active': activeTab == 1}" class="btn btn-default btn-tab-detail-item">审批</a>
+            <a ui-set="{'activeTab': 2}"
+               ui-class="{'active': activeTab == 2}" class="btn btn-default btn-tab-detail-item">详情</a>
+
+            <a ui-set="{'activeTab': 3}"
+               ui-class="{'active': activeTab == 3}" class="btn btn-default btn-tab-detail-item">流程</a>
+
+        </div>
+        <!-- loading toast -->
+        <div id="loadingToast" class="weui_loading_toast" ng-show="isLoadingToast">
+            <div class="weui_mask_transparent"></div>
+            <div class="weui_toast">
+                <div class="weui_loading">
+                    <div class="weui_loading_leaf weui_loading_leaf_0"></div>
+                    <div class="weui_loading_leaf weui_loading_leaf_1"></div>
+                    <div class="weui_loading_leaf weui_loading_leaf_2"></div>
+                    <div class="weui_loading_leaf weui_loading_leaf_3"></div>
+                    <div class="weui_loading_leaf weui_loading_leaf_4"></div>
+                    <div class="weui_loading_leaf weui_loading_leaf_5"></div>
+                    <div class="weui_loading_leaf weui_loading_leaf_6"></div>
+                    <div class="weui_loading_leaf weui_loading_leaf_7"></div>
+                    <div class="weui_loading_leaf weui_loading_leaf_8"></div>
+                    <div class="weui_loading_leaf weui_loading_leaf_9"></div>
+                    <div class="weui_loading_leaf weui_loading_leaf_10"></div>
+                    <div class="weui_loading_leaf weui_loading_leaf_11"></div>
+                </div>
+                <p class="weui_toast_content">数据加载中</p>
+            </div>
+        </div>
+  <!--BEGIN dialog2-->
+<div class="weui_dialog_alert" id="dialog2" ng-show="showWarnToast">
+    <div class="weui_mask"></div>
+    <div class="weui_dialog">
+        <div class="weui_dialog_hd"><strong class="weui_dialog_title">提示</strong></div>
+        <div class="weui_dialog_bd">请填写审批意见</div>
+        <div class="weui_dialog_ft">
+            <a ng-click="hideWarn();" class="btn_weui_dialog primary">确定</a>
+        </div>
+    </div>
+</div>
+<!--END dialog2-->

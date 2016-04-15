@@ -1,0 +1,29 @@
+﻿
+<div class="webframe scrollable" ui-state="searchBar" style="padding-bottom:40px;">
+    <input type="search"
+           class="form-control scrollable-header"
+           placeholder="Search.." />
+    <div class="scrollable-content" ui-scroll-bottom='bottomReached()'>
+
+        <div ng-repeat="process in processlists" class="list" ng-click="showDetail($index)">
+
+            <div class="list_title">{{process.WorkflowName}}</div>
+            <div>
+                <div class="list_l">
+                    <div>申请人：{{process.AD}}</div>
+                    <div><span>时间：{{process.AssinedDateString}}</span><span class="list_no">{{process.WorkFlowNumber}}</span></div>
+                </div>
+            </div>
+        </div>
+        <div style="text-align:center;font-size:20px;padding-bottom:40px;" ng-click="loadMore()">更多...</div>
+ 
+    </div>
+    <div class="bom">
+        <!--<div ng-class="{true: 'pending', false: 'examined'}[showPending]" ng-click="toggle(Pending)">{{Pending}}</div>
+        <div ng-class="{true: 'examined', false: 'pending'}[showPending]" ng-click="toggle(Review)"> {{Review}}</div>-->
+        <div class="pending" ng-click="toggle(Pending)">待审流程</div>
+        <div class="examined" ng-click="toggle(Reviewed)">已审流程</div>
+    </div>
+
+</div>
+

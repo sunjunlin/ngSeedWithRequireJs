@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <script src="js/config.js"></script>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <title></title>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            config.application.init();
+
+            $('input[name="env"]').click(function(){
+                var selected = $(this).val();
+                var settings = config.application.getAppSettings(selected);
+                console.log('you selected evn is '+settings['name']);
+            })
+        })
+    </script>
+</head>
+<body>
+    EP<input checked type="radio" name="env" value="EP"/>
+    PLM<input type="radio" name="env" value="PLM"/>
+</body>
+</html>

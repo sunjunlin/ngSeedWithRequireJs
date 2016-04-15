@@ -1,0 +1,170 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="wxApp">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+    <title>TCL通讯</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimal-ui" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="yes" />
+    <link rel="stylesheet" type="text/css" href="css/login.css" />
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/jquery/dist/jquery.cookie.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+           adAuth.init();
+        });
+
+        var adAuth = (function($){
+            var instance = {},
+                _context = {},//ad auto process context
+                _ensureInit = false,
+                _cookieKey = 'ad';
+
+            var _getParameterByName = function (name) {
+                if (name != undefined) {
+                    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+                }
+                var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+                        results = regex.exec(location.search);
+                return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+            };//get parameter from query string.
+
+            var _getPwd = function(){
+                //$.removeCookie(_cookieKey);//for test.
+                return $.cookie(_cookieKey);
+            };//get ad password from cookie
+
+            var _render = function(){
+                if(_context.autoLogin){
+                    $('#txtLoginName').val(_context.userAD);
+                    $('#hidUserID').val(_context.userId);
+                    $('#txtPassword').val(_context.pwd);
+                    $("#divLogin").hide();
+                    $(".result_r").hide();
+                    $(".result_m").hide();
+                    $(".result_mt").hide();
+                }else{
+                    $('#txtLoginName').val(_context.userAD);
+                    $('#hidUserID').val(_context.userId);
+                    $("#divLogin").show();
+                    $(".result_r").hide();
+                    $(".result_m").hide();
+                    $(".result_mt").hide();
+                }
+            };//render login form,if auto login hide the form.
+
+            var _initContext = function(callback){
+                _context.userId = _getParameterByName('userId');
+                _context.redirectUrl = _getParameterByName('redirectUrl').replace('@', '#');
+                _context.pwd = _getPwd();
+                _context.autoLogin = true;
+           
+                if(_context.pwd == null){
+                    _context.autoLogin = false;
+                }
+                $.getJSON(
+                        "/api/WeiXinCorp/GetUserInfo",
+                        {
+                            userID: _context.userId
+                        },
+                        function (data) {
+                            _context.userAD = data.ZAD;
+                            _ensureInit = true;
+                            _render();
+                            callback();
+                        }
+                );
+            };// init the process context.
+
+            var _bindEvent = function(){
+                $('#btnLogin').click(function () {
+                  
+                    _auth();
+                });
+            };// bind event for login btn.
+
+            var _storePwd = function(val){
+                $.cookie(_cookieKey,val);
+            };
+
+            var _auth = function () {
+
+                var strJson = {
+                                    "userAD": $("#txtLoginName").val(),
+                                    "password": $("#txtPassword").val(),
+                                    "userID": $("#hidUserID").val()
+                                };
+                // );
+                $.getJSON("/api/WeiXinCorp/AdAuthentication", strJson, function (data) {
+                    if (data.errcode == 0) {
+                    
+
+                        $(".result_r").hide();
+                        $(".result_m").hide();
+                        $(".result_mt").hide();
+                        $("#divLogin").hide();
+                        if(!_context.autoLogin) {
+                            _storePwd($("#txtPassword").val());
+                            $(".result_r").show();                            
+                        }
+                        $.cookie('isAdAuth', true);//used for once,will delete when first get.
+                      
+                        window.location.href = _context.redirectUrl;
+                    }
+                    else {
+                
+
+                        $("#divLogin").hide();
+                        $(".result_r").hide();
+                        $(".result_m").show();
+                        $(".result_mt").show().text(data.errmsg);
+                        _context.autoLogin = false;
+                        setTimeout(function(){
+                            $("#divLogin").show();
+                            $(".result_r").hide();
+                            $(".result_m").hide();
+                            $(".result_mt").hide().text('');
+                            $("#txtPassword").val('');
+                        },1500) 
+                    }
+                });
+            }
+
+            instance.init = function(){
+                if(!_ensureInit){
+                    _initContext(function(){
+                        _bindEvent();
+                        if(_context.autoLogin){
+                            $('#btnLogin').click();
+                        }
+                    });
+                }
+            };
+            return instance;
+        }(jQuery))
+    </script>
+</head>
+<body>
+    <form>
+        <div id="divLogin">
+            <div class="all"><img src="images/all.jpg"></div>
+            <div class="logint">登录帐号</div>
+            <div class="log_input">
+                <input type="text" id="txtLoginName" class="input_l" />
+                <input type="hidden" id="hidUserID" />
+            </div>
+            <div class="logint">帐号密码</div>
+            <div class="log_input">
+                <input type="password" id="txtPassword" class="input_l" />
+            </div>
+            <div id="btnLogin" class="btn">确认</div>
+        </div>
+        <div class="result_m" style="display:none;"><img src="images/mis.png"></div>
+        <div class="result_mt" style="display:none;">密码错误</div>
+        <div class="result_r" style="display:none;"><img src="images/right.png"></div>
+    </form>
+</body>
+</html>

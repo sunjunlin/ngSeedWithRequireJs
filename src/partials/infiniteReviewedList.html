@@ -1,0 +1,19 @@
+﻿<span us-spinner spinner-key="spinner-1"></span>
+<div class="search"><div class="search_l">
+    <input name="" type="text" class="input_search"></div>
+    <div class="search_r">取消</div>
+</div>
+<div infinite-scroll="myPagingFunction()" infinite-scroll-distance="0" >
+    <div class="process_w" ng-repeat="process in ReviewedListData"  ng-click="showDetail($index)">
+        <div class="process_title">{{process.WorkflowName}}</div>
+        <div class="process_info">
+            <p>申请人：{{process.AD}}</p>
+            <p>时间：{{process.AssinedDateString}}  流程编号：{{process.WorkFlowNumber}}</p>
+        </div>
+    </div>
+
+    <div class="more">
+        <div class="more_bi">查看更多</div>
+        <div class="more_go"><img src="images/go.png"></div>
+    </div>
+</div>

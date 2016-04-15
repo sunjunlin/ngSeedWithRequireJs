@@ -1,0 +1,22 @@
+﻿ 
+<div class="bd">
+    <div class="weui_msg">
+        <div class="weui_icon_area"><i class="weui_icon_success weui_icon_msg"></i></div>
+        <div class="weui_text_area">
+            <h2 class="weui_msg_title" ng-if="processResultDetail.Action=='Approve'">流程已批准</h2>
+            <h2 class="weui_msg_title" ng-if="processResultDetail.Action=='RollBack'">流程已驳回</h2>
+ 
+            <p class="weui_msg_desc">时间： {{processResultDetail.Date| date:'yyyy-MM-dd HH:mm:ss'}} </p>
+            <p class="weui_msg_desc">流程编号：{{processResultDetail.WorkFlowNumber}}</p>
+        </div>
+        <div class="weui_opr_area">
+            <p class="weui_btn_area">
+                <a  class="weui_btn weui_btn_primary" ng-click="GoToPendingList();">确定</a>
+                <a href="javascript:history.back(-1);" class="weui_btn weui_btn_default">查看流程</a>
+            </p>
+        </div>
+        <div class="weui_extra_area">
+     
+        </div>
+    </div>
+</div>

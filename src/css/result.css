@@ -1,0 +1,188 @@
+﻿body {
+	font-family: 微软雅黑, Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	color: #333333;
+	background-color: #FFFFFF;
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+.webframe {
+	overflow:hidden;
+}
+.topbar {
+	height:30px;
+	background:#000000;
+	color:#FFF;
+	line-height:30px;
+}
+.topbar a {
+	color:#FFF;
+	text-decoration:none;
+}
+.topbar td {
+	padding:0 10px;
+}
+.topbar_left {
+	width:40px;
+}
+.topbar_right {
+	width:40px;
+}
+.topbar_title {
+	text-align:center;
+}
+.list {
+	padding:4px 10px;
+	border-bottom:1PX solid #CCCCCC;
+	overflow:hidden;
+}
+.list:hover {
+	background:#F1F1F1;
+	cursor:pointer;
+}
+.list_title {
+	font-size:16px;
+	line-height:24px;
+	padding:4px 10px;
+	font-weight:bold;
+}
+.list_l {
+	float:left;
+	color:#666666;
+	line-height:20px;
+}
+.list_title a {
+	color:#333;
+	text-decoration:none;
+}
+.list_title a:hover {
+	color:#990000;
+}
+.list_r {
+	float:right;
+	border:1px solid #999;
+	height:24px;
+	width:24px;
+	margin:6px;
+	line-height:24px;
+	text-align:center;
+	cursor:pointer;
+	font-size:14px;
+}
+.list_r a {
+	text-decoration:none;
+	color:#999;
+}
+.list_no {
+	margin-left:20px;
+}
+.bom {
+	position:fixed;
+	left:0px;
+	width:100%;
+	bottom:0;
+	_position:absolute;
+ _top:expression(document.documentElement.clientHeight + document.documentElement.scrollTop - this.offsetHeight);
+}
+.pending {
+	float:left;
+	width:50%;
+	text-align:center;
+	height:40px;
+	line-height:40px;
+	display:block;
+	background:#CCC;
+	cursor:pointer;
+	font-size:16px;
+}
+.pending:hover {
+	color:#999
+}
+.examined:hover {
+	color:#333
+}
+.examined {
+	float:right;
+	width:50%;
+	text-align:center;
+	height:40px;
+	color:#999;
+	line-height:40px;
+	background:#F1F1F1;
+	cursor:pointer;
+	font-size:16px;
+}
+/*------流程页面样式开始--------*/ 
+.backg {
+	background:#F1F1F1;
+}
+.process_list {
+	overflow:hidden;
+	padding:4px;
+	margin-bottom:10px;
+	background:#FFF;
+}
+.process_title {
+	font-size:16px;
+	line-height:24px;
+	padding:4px 0px;
+	font-weight:bold;
+	text-align:center;
+}
+.process_table {
+	padding:4px 0px;
+	line-height:20px;
+	overflow:hidden;
+}
+.process_table_l {
+	color:#666666;
+	float:left;
+	line-height:20px;
+	clear:both;
+	width:88px;
+}
+.process_table_r {
+	margin-left:88px;
+}
+.btn {
+	float:right;
+	color:#FFF;
+	border:0;
+	height:30px;
+	text-align:30px;
+	padding:0 20px;
+	background:#333333;
+	margin:10px;
+	cursor:pointer;
+}
+.btn_look {
+	float:right;
+	color:#FFF;
+	border:0;
+	height:30px;
+	text-align:30px;
+	padding:0 20px;
+	background:#666;
+	margin:10px;
+	cursor:pointer;	
+}
+
+/*------结果页面开始--------*/ 
+.process_back {
+	overflow:hidden;
+	padding:60px 4px 10px 4px;
+	background:#FFF;
+	text-align:center;
+}
+.btn_c {
+	color:#FFF;
+	border:0;
+	height:30px;
+	text-align:30px;
+	padding:0 20px;
+	background:#333333;
+	margin:10px;
+	cursor:pointer;
+}
